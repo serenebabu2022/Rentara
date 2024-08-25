@@ -20,13 +20,13 @@ const typography = {
     h1: {
         fontFamily: MONTSERRAT_BOLD,
         lineHeight: 1,
-        fontSize: pxToRem(72)
+        fontSize: pxToRem(35)
     },
     h2: {
         fontFamily: MONTSERRAT,
         fontWeight: 700,
         lineHeight: 1,
-        fontSize: pxToRem(36),
+        fontSize: pxToRem(30),
         // ...responsiveFontSizes({ sm: 22, md: 30, lg: 36 }),
     },
     h3: {
@@ -57,6 +57,12 @@ const typography = {
         fontFamily: MONTSERRAT,
         lineHeight: 1.5,
         fontSize: pxToRem(14),
+        // ...responsiveFontSizes({ sm: 14, md: 14, lg: 14 }),
+    },
+    body2: {
+        fontFamily: MONTSERRAT,
+        // lineHeight: 1.5,
+        fontSize: pxToRem(18),
         // ...responsiveFontSizes({ sm: 14, md: 14, lg: 14 }),
     },
     //   subtitle2: {

@@ -1,10 +1,11 @@
 import React from "react";
-import { Route, NavLink, HashRouter, Routes } from "react-router-dom";
-import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
+import { Route, HashRouter, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 import NavBar from "./components/common/NavBar";
 import ThemeConfig from "./theme";
+import Footer from "./components/common/Footer";
 
 function App() {
   return (
@@ -12,12 +13,6 @@ function App() {
       <ThemeConfig>
         <div className="App">
           <NavBar />
-          <h1>A Simple SPA made using React</h1>
-          <ul className="header">
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/about">About</NavLink></li>
-            <li><NavLink to="/contact">Contact</NavLink></li>
-          </ul>
           <div className="content">
             <Routes>
               <Route exact path="/" element={<Home />}></Route>
@@ -25,6 +20,7 @@ function App() {
               <Route exact path="/contact" element={<Contact />}></Route>
             </Routes>
           </div>
+          <Footer />
         </div>
       </ThemeConfig>
     </HashRouter>

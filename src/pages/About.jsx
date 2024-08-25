@@ -1,15 +1,22 @@
-import React, { Component } from "react";
+// ----------------------------------------------------------------------
+/* Imports */
+import React from "react";
 
+// ----------------------------------------------------------------------
+/* Styles */
 const styles = {
     heading: {
         backgroundColor: "#bfbfbf",
     }
 };
+
+// ----------------------------------------------------------------------
+/* About Page */
+// ----------------------------------------------------------------------
 function About() {
     return (
         <div>
-            <h3 style={styles.heading}>SPA App - About</h3>
-            <p>This is a paragraph on the About of the SPA App.</p>
+            <h3 style={styles.heading}>Rentara - About</h3>
             <p>The Team of SPA App.</p>
             <table>
                 <thead>

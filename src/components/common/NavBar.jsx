@@ -1,17 +1,17 @@
-'use strict';
-import React, { Component } from "react";
-import { Box, Typography, Icon, Paper, InputBase, IconButton, FormControl, Select, MenuItem, Button, useTheme } from "@mui/material";
+// ----------------------------------------------------------------------
+/* Imports */
+import React from "react";
+import { Box, Typography, Paper, InputBase, IconButton, FormControl, Select, MenuItem, Button, useTheme } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-
+/* Relative Imports */
 import logo from "../../assets/images/logo.png"
-// import { useTheme } from "@emotion/react";
 
+// ----------------------------------------------------------------------
+/* Styles */
 const styles = {
     rootStyle: (theme) => ({
         display: "flex",
         flexDirection: "row",
-        // justifyContent: "space-between",
-        mb: theme.spacing(5),
         p: "12px 40px 8px 40px",
         justifyContent: "space-between",
         [theme.breakpoints.down("1200")]: {
@@ -31,6 +31,8 @@ const styles = {
         alignItems: 'center',
         backgroundColor: theme.palette.common.white,
         height: "35px",
+        border: `1px solid ${theme.palette.primary.brandBlue}`,
+        borderRadius: "7px"
     }),
     topRightBox: () => ({
         justifyContent: "flex-end",
@@ -51,24 +53,14 @@ const styles = {
         color: theme.palette.primary.brandBlue,
         fontSize: "18px",
         fontWeight: 500,
-        m: "4px 0px 5px 0px"
-    }),
-    searchBox: (theme) => ({
-        backgroundColor: theme.palette.light.text.primary,
-        borderRadius: `${theme.shape.borderRadius}px`,
-        width: 180,
-        height: 30,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
+        m: "4px 0px 5px 0px",
+        "&:hover": {
+            cursor: "pointer !important"
+        }
     }),
     searchIconStyle: (theme) => ({
         padding: '10px',
-        color: theme.palette.primary.brandBlue,
-        // display: "flex",
-        // alignItems: "center",
-        // mr: theme.spacing(1),
+        color: theme.palette.primary.brandBlue
     }),
     notificationIconStyle: (theme) => ({
         ml: theme.spacing(3.7),
@@ -77,9 +69,16 @@ const styles = {
         ml: theme.spacing(2.5),
     }),
 }
+
+// ----------------------------------------------------------------------
+/* Navigation Bar Component */
+// ----------------------------------------------------------------------
 function NavBar() {
     const theme = useTheme();
 
+    function postItem() {
+        console.log("Post Item Clicked")
+    }
     return (
         <Box sx={styles.rootStyle}>
             <Box
@@ -116,7 +115,7 @@ function NavBar() {
                     <SearchIcon />
                 </IconButton>
             </Paper>
-            <Typography variant="subtitle1" sx={styles.navBarTexts} style={{ marginRight: "30px" }}>
+            <Typography variant="subtitle1" sx={styles.navBarTexts} style={{ marginRight: "30px" }} onClick={postItem}>
                 Post an Item
             </Typography>
             <Typography variant="subtitle1" sx={styles.navBarTexts} style={{ marginRight: "30px" }}>

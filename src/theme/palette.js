@@ -5,6 +5,10 @@ const PRIMARY = {
     brandBlue: "#0D58A6",
     brandOrange: "FF9900"
 };
+const SECONDARY = {
+    main: "#B3D8FF",
+    light: "#B3D8FF"
+}
 
 const COMMON = {
     common: {
@@ -13,6 +17,7 @@ const COMMON = {
         grey: "#58595B",
     },
     primary: { ...PRIMARY, contrastText: "#fff" },
+    secondary: { ...SECONDARY }
 };
 const GREY = {
     100: "#F9FAFB",
