@@ -14,6 +14,7 @@ const styles = {
 /* About Page */
 // ----------------------------------------------------------------------
 function About() {
+    console.log("gkerng")
     return (
         <div>
             <h3 style={styles.heading}>Rentara - About</h3>

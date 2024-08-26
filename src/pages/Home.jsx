@@ -2,7 +2,7 @@
 /* Imports */
 import React, { useState } from "react";
 import Carousel from 'react-bootstrap/Carousel';
-import { Box, Button, Divider, TextField, Typography } from "@mui/material";
+import { Box, Button, Divider, TextField, Typography, Tooltip, Link } from "@mui/material";
 import StarIcon from '@mui/icons-material/Star';
 
 /* Relative Imports */
@@ -65,7 +65,6 @@ const styles = {
     }),
     inputStyle: (theme) => ({
         flexGrow: 1,
-        height: "45px",
         color: theme.palette.primary.brandBlue,
         borderColor: theme.palette.primary.brandBlue,
         '& .MuiOutlinedInput-root': {
@@ -94,10 +93,7 @@ const styles = {
     }),
     rentalItemTexts: (theme) => ({
         m: "17px 0px",
-        color: theme.palette.primary.brandBlue,
-        "&:hover": {
-            cursor: "pointer !important"
-        }
+        color: theme.palette.primary.brandBlue
     }),
     dividerBox: {
         display: "flex",
@@ -136,16 +132,18 @@ const styles = {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        mt: "27px",
-        "&:hover": {
-            cursor: "pointer !important"
-        }
+        mt: "27px"
     },
     ".gridItem img": {
         width: "100%",
         height: "150px",
         objectFit: "cover"
+    },
+    linkStyle: {
+        textDecoration: 'none',
+        color: 'inherit'
     }
+
 }
 
 // ----------------------------------------------------------------------
@@ -162,50 +160,52 @@ function Home() {
         setTestimonialIndex(selectedIndex);
     };
     return (
-        <Box sx={styles.rootStyle}>
-            <Carousel activeIndex={index} onSelect={handleSelect} interval={null} sx={styles.indicatorStyle}>
-                <Carousel.Item id="1" >
-                    <Box component="img" src={banner1} sx={styles.bannerImg} alt="Advertisement banner1"></Box>
-                </Carousel.Item>
-                <Carousel.Item id="2">
-                    <Box component="img" src={banner2} sx={styles.bannerImg} alt="Advertisement banner2"></Box>
-                </Carousel.Item>
-                <Carousel.Item id="3">
-                    <Box component="img" src={banner1} sx={styles.bannerImg} alt="Advertisement banner3"></Box>
-                </Carousel.Item>
-            </Carousel>
+        <Box sx={styles.rootStyle} component="main" role="main" id="main" tabIndex="-1">
+            <Box role="banner">
+                <Carousel activeIndex={index} onSelect={handleSelect} interval={null} sx={styles.indicatorStyle}>
+                    <Carousel.Item id="1" >
+                        <Box component="img" role="img" src={banner1} sx={styles.bannerImg} alt="Advertisement banner1"></Box>
+                    </Carousel.Item>
+                    <Carousel.Item id="2">
+                        <Box component="img" role="img" src={banner2} sx={styles.bannerImg} alt="Advertisement banner2"></Box>
+                    </Carousel.Item>
+                    <Carousel.Item id="3">
+                        <Box component="img" role="img" src={banner1} sx={styles.bannerImg} alt="Advertisement banner3"></Box>
+                    </Carousel.Item>
+                </Carousel>
+            </Box>
             <Box sx={styles.boxStyle}>
-                <Typography variant="h1" sx={styles.headerStyle}>Rent Anything</Typography>
-                <Box sx={styles.searchStyle}>
-                    <TextField placeholder="I want to rent.." inputProps={{ 'aria-label': 'search', disableUnderline: true, style: { height: "13px" } }} sx={styles.inputStyle} ></TextField>
-                    <Button variant="contained" sx={styles.searchButton}>Search</Button>
+                <Typography variant="h1" role="heading" aria-level="1" sx={styles.headerStyle}>Rent Anything</Typography>
+                <Box sx={styles.searchStyle} component="form" role="search">
+                    <TextField placeholder="I want to rent.." role="searchbox" id="mainSearchBox" inputProps={{ 'aria-label': 'search', style: { height: "13px" } }} sx={styles.inputStyle} name="search" type="search"></TextField>
+                    <Tooltip title="Search"><Button variant="contained" sx={styles.searchButton} id="searchButton">Search</Button></Tooltip>
                 </Box>
                 <Typography variant="h6" sx={styles.bodyTextStyle}>Or</Typography>
-                <Button variant="contained" sx={styles.rentItemButtonStyle}>Rent your Item</Button>
+                <Tooltip title="Rent your item"><Button variant="contained" sx={styles.rentItemButtonStyle}>Rent your Item</Button></Tooltip>
             </Box>
             <Box sx={{
                 display: "flex",
                 justifyContent: "center",
             }}>
-                <Box sx={styles.rentalItemsBox}>
+                <Box sx={styles.rentalItemsBox} role="group">
                     <Box sx={{
                         display: "flex",
                         justifyContent: "center",
                     }}>
                         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", justifyContent: "center", }}>
-                            <Typography sx={styles.rentalItemTexts} variant="h6">Scooter?</Typography>
-                            <Typography sx={styles.rentalItemTexts} variant="h6">Camera?</Typography>
-                            <Typography sx={styles.rentalItemTexts} variant="h6">Equipment?</Typography>
-                            <Typography sx={styles.rentalItemTexts} variant="h6">Event Decoration?</Typography>
+                            <Link href="/" sx={styles.linkStyle}><Typography sx={styles.rentalItemTexts} variant="h6">Scooter?</Typography></Link>
+                            <Link href="/" sx={styles.linkStyle}><Typography sx={styles.rentalItemTexts} variant="h6">Camera?</Typography></Link>
+                            <Link href="/" sx={styles.linkStyle}><Typography sx={styles.rentalItemTexts} variant="h6">Equipment?</Typography></Link>
+                            <Link href="/" sx={styles.linkStyle}><Typography sx={styles.rentalItemTexts} variant="h6">Event Decoration?</Typography></Link>
                         </Box>
                         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", }}>
-                            <Box component="img" src={rentImage} alt="rent image"></Box>
+                            <Box component="img" role="img" src={rentImage} alt="rent image"></Box>
                         </Box>
                         <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-end", justifyContent: "center", }}>
-                            <Typography sx={styles.rentalItemTexts} variant="h6">Bike?</Typography>
-                            <Typography sx={styles.rentalItemTexts} variant="h6">Heater?</Typography>
-                            <Typography sx={styles.rentalItemTexts} variant="h6">Game consoles?</Typography>
-                            <Typography sx={styles.rentalItemTexts} variant="h6">Sport Equipments?</Typography>
+                            <Link href="/" sx={styles.linkStyle}><Typography sx={styles.rentalItemTexts} variant="h6">Bike?</Typography></Link>
+                            <Link href="/" sx={styles.linkStyle}><Typography sx={styles.rentalItemTexts} variant="h6">Heater?</Typography></Link>
+                            <Link href="/" sx={styles.linkStyle}><Typography sx={styles.rentalItemTexts} variant="h6">Game consoles?</Typography></Link>
+                            <Link href="/" sx={styles.linkStyle}><Typography sx={styles.rentalItemTexts} variant="h6">Sport Equipments?</Typography></Link>
                         </Box>
                     </Box>
                 </Box>
@@ -213,116 +213,117 @@ function Home() {
             <Box sx={styles.dividerBox}>
                 <Divider sx={styles.dividerStyle} />
             </Box>
-
-            <Carousel activeIndex={testimonialIndex} onSelect={handleSelectTestimonial} interval={null} >
-                <Carousel.Item id="slide4" sx={styles.indicatorStyle}>
-                    <Box sx={styles.dividerBox} style={{ marginTop: "30px" }}>
-                        <Box sx={styles.testimonialText}>
-                            <Typography sx={{ textAlign: "center" }} variant="h6">With Rentara, I can easily rent what I need, when I need it, and focus on what truly matters - my education. Thank you, Rentara, for making my student life so much easier!</Typography>
+            <Box component="testimonial" role="testimonial">
+                <Carousel activeIndex={testimonialIndex} onSelect={handleSelectTestimonial} interval={null} >
+                    <Carousel.Item id="slide4" sx={styles.indicatorStyle}>
+                        <Box sx={styles.dividerBox} style={{ marginTop: "30px" }}>
+                            <Box sx={styles.testimonialText}>
+                                <Typography sx={{ textAlign: "center" }} variant="h6">With Rentara, I can easily rent what I need, when I need it, and focus on what truly matters - my education. Thank you, Rentara, for making my student life so much easier!</Typography>
+                            </Box>
                         </Box>
-                    </Box>
-                    <Box sx={{ display: "flex", justifyContent: "flex-end", marginRight: "20%" }}>
-                        <Typography variant="subtitle1">-Mahendra Singh</Typography></Box>
-                    <Box></Box>
-                    <Box sx={{ display: 'flex', justifyContent: "flex-end", marginRight: "20%" }}>
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                    </Box>
-                </Carousel.Item>
-                <Carousel.Item id="5">
-                    <Box sx={styles.dividerBox} style={{ marginTop: "30px" }}>
-                        <Box sx={styles.testimonialText}>
-                            <Typography sx={{ textAlign: "center" }} variant="h6">With Rentara, I can easily rent what I need, when I need it, and focus on what truly matters - my education. Thank you, Rentara, for making my student life so much easier!</Typography>
+                        <Box sx={{ display: "flex", justifyContent: "flex-end", marginRight: "20%" }}>
+                            <Typography variant="subtitle1">-Mahendra Singh</Typography></Box>
+                        <Box></Box>
+                        <Box sx={{ display: 'flex', justifyContent: "flex-end", marginRight: "20%" }} role="img">
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
                         </Box>
-                    </Box>
-                    <Box sx={{ display: "flex", justifyContent: "flex-end", marginRight: "20%" }}>
-                        <Typography variant="subtitle1">-Mahendra Singh</Typography></Box>
-                    <Box></Box>
-                    <Box sx={{ display: 'flex', justifyContent: "flex-end", marginRight: "20%" }}>
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                    </Box>
-                </Carousel.Item>
-                <Carousel.Item id="6">
-                    <Box sx={styles.dividerBox} style={{ marginTop: "30px" }}>
-                        <Box sx={styles.testimonialText}>
-                            <Typography sx={{ textAlign: "center" }} variant="h6">With Rentara, I can easily rent what I need, when I need it, and focus on what truly matters - my education. Thank you, Rentara, for making my student life so much easier!</Typography>
+                    </Carousel.Item>
+                    <Carousel.Item id="5">
+                        <Box sx={styles.dividerBox} style={{ marginTop: "30px" }}>
+                            <Box sx={styles.testimonialText}>
+                                <Typography sx={{ textAlign: "center" }} variant="h6">With Rentara, I can easily rent what I need, when I need it, and focus on what truly matters - my education. Thank you, Rentara, for making my student life so much easier!</Typography>
+                            </Box>
                         </Box>
-                    </Box>
-                    <Box sx={{ display: "flex", justifyContent: "flex-end", marginRight: "20%" }}>
-                        <Typography variant="subtitle1">-Mahendra Singh</Typography></Box>
-                    <Box></Box>
-                    <Box sx={{ display: 'flex', justifyContent: "flex-end", marginRight: "20%" }}>
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                        <StarIcon sx={{ color: 'gold' }} />
-                    </Box>
-                </Carousel.Item>
-            </Carousel>
+                        <Box sx={{ display: "flex", justifyContent: "flex-end", marginRight: "20%" }}>
+                            <Typography variant="subtitle1">-Mahendra Singh</Typography></Box>
+                        <Box></Box>
+                        <Box sx={{ display: 'flex', justifyContent: "flex-end", marginRight: "20%" }} role="img">
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                        </Box>
+                    </Carousel.Item>
+                    <Carousel.Item id="6">
+                        <Box sx={styles.dividerBox} style={{ marginTop: "30px" }}>
+                            <Box sx={styles.testimonialText}>
+                                <Typography sx={{ textAlign: "center" }} variant="h6">With Rentara, I can easily rent what I need, when I need it, and focus on what truly matters - my education. Thank you, Rentara, for making my student life so much easier!</Typography>
+                            </Box>
+                        </Box>
+                        <Box sx={{ display: "flex", justifyContent: "flex-end", marginRight: "20%" }}>
+                            <Typography variant="subtitle1">-Mahendra Singh</Typography></Box>
+                        <Box></Box>
+                        <Box sx={{ display: 'flex', justifyContent: "flex-end", marginRight: "20%" }} role="img">
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                            <StarIcon sx={{ color: 'gold' }} />
+                        </Box>
+                    </Carousel.Item>
+                </Carousel></Box>
             <Box sx={styles.dividerBox}>
                 <Divider sx={styles.dividerStyle} />
             </Box>
-            <Box sx={styles.dividerBox}><Box sx={{ width: "60%", marginTop: "20px" }}><Typography variant="h4">Categories</Typography></Box></Box>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-                <Box sx={{ width: "60%", marginTop: "15px" }}>
-                    <Box sx={styles.gridContainer}>
-                        <Box sx={styles.gridItem} style={{ marginTop: "0px" }}>
-                            <Box component="img" src={veh} alt="Vehicles & Accessories" ></Box>
-                            <Typography variant="body2">Vehicles & Accessories</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem} style={{ marginTop: "0px" }}>
-                            <Box component="img" src={tools} alt="Tools" ></Box>
-                            <Typography variant="body2">Tools</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem} style={{ marginTop: "0px" }}>
-                            <Box component="img" src={camera} alt="Camera & Accessories" ></Box>
-                            <Typography variant="body2">Camera & Accessories</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem} style={{ marginTop: "0px" }}>
-                            <Box component="img" src={game} alt="Game Consoles" ></Box>
-                            <Typography variant="body2">Game Consoles</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem}>
-                            <Box component="img" src={sportEquip} alt="Sports & Acitivites" ></Box>
-                            <Typography variant="body2">Sports & Acitivites</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem}>
-                            <Box component="img" src={event} alt="For events" ></Box>
-                            <Typography variant="body2">For events</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem}>
-                            <Box component="img" src={tech} alt="Technology" ></Box>
-                            <Typography variant="body2">Technology</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem}>
-                            <Box component="img" src={music} alt="Music Instruments" ></Box>
-                            <Typography variant="body2">Music Instruments</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem}>
-                            <Box component="img" src={furniture} alt="Furniture" ></Box>
-                            <Typography variant="body2">Furniture</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem}>
-                            <Box component="img" src={gardenEquip} alt="Garden Equipments" ></Box>
-                            <Typography variant="body2">Garden Equipments</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem}>
-                            <Box component="img" src={cloth} alt="Clothing" ></Box>
-                            <Typography variant="body2">Clothing</Typography>
-                        </Box>
-                        <Box sx={styles.gridItem}>
-                            <Box component="img" src={kids} alt="For children" ></Box>
-                            <Typography variant="body2">For children</Typography>
-                        </Box>
-                    </Box></Box></Box>
+            <Box component="categories" role="categories">
+                <Box sx={styles.dividerBox}><Box sx={{ width: "60%", marginTop: "20px" }}><Typography variant="h4" role="heading" aria-level="2">Categories</Typography></Box></Box>
+                <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    <Box sx={{ width: "60%", marginTop: "15px" }}>
+                        <Box sx={styles.gridContainer}>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem} style={{ marginTop: "0px" }}>
+                                <Box component="img" src={veh} alt="Vehicles & Accessories" role="img"></Box>
+                                <Typography variant="body2">Vehicles & Accessories</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem} style={{ marginTop: "0px" }}>
+                                <Box component="img" src={tools} alt="Tools" role="img"></Box>
+                                <Typography variant="body2">Tools</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem} style={{ marginTop: "0px" }}>
+                                <Box component="img" src={camera} alt="Camera & Accessories" role="img"></Box>
+                                <Typography variant="body2">Camera & Accessories</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem} style={{ marginTop: "0px" }}>
+                                <Box component="img" src={game} alt="Game Consoles" role="img" ></Box>
+                                <Typography variant="body2">Game Consoles</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem}>
+                                <Box component="img" src={sportEquip} alt="Sports & Acitivites" role="img" ></Box>
+                                <Typography variant="body2">Sports & Acitivites</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem}>
+                                <Box component="img" src={event} alt="For events" role="img"></Box>
+                                <Typography variant="body2">For events</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem}>
+                                <Box component="img" src={tech} alt="Technology" role="img"></Box>
+                                <Typography variant="body2">Technology</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem}>
+                                <Box component="img" src={music} alt="Music Instruments" role="img"></Box>
+                                <Typography variant="body2">Music Instruments</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem}>
+                                <Box component="img" src={furniture} alt="Furniture" role="img"></Box>
+                                <Typography variant="body2">Furniture</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem}>
+                                <Box component="img" src={gardenEquip} alt="Garden Equipments" role="img"></Box>
+                                <Typography variant="body2">Garden Equipments</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem}>
+                                <Box component="img" src={cloth} alt="Clothing" role="img"></Box>
+                                <Typography variant="body2">Clothing</Typography>
+                            </Box></Link>
+                            <Link href="/" sx={styles.linkStyle}><Box sx={styles.gridItem}>
+                                <Box component="img" src={kids} alt="For children" role="img"></Box>
+                                <Typography variant="body2">For children</Typography>
+                            </Box></Link>
+                        </Box></Box></Box></Box>
         </Box>
     );
 }
